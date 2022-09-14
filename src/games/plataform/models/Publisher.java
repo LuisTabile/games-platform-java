@@ -1,13 +1,17 @@
 package games.plataform.models;
 
+import java.util.ArrayList;
+
 public class Publisher {
     
     private final int id;
     private final String name;
+    private final ArrayList<Game> games;
 
-    public Publisher(int id, String name) {
+    public Publisher(int id, String name, ArrayList<Game> games) {
         this.id = id;
         this.name = name;
+        this.games = games;
     }
     
     /**
