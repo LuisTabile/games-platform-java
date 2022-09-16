@@ -18,7 +18,7 @@ public class Games {
      * @return all games from the publisher
      */
     public static String getGames(int publisherId){
-        return "SELECT * FROM game INNER JOIN publisher ON (game.publisher_id === publisher.id) WHERE publisher.id === " + publisherId;
+        return getGames().concat(" WHERE publisher.id === " + publisherId);
     }
     
 }
