@@ -27,7 +27,7 @@ public class Clients {
      * @return client with all games
      */
     public static String getClientsWithGames(int clientId) {
-        return getClientsWithGames().concat(" WHERE client.id === " + clientId);
+        return getClientsWithGames().concat(" WHERE client.id = " + clientId);
     }
     
 }
