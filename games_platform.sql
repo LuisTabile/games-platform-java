@@ -1,7 +1,7 @@
-drop database if exists games_plataform;
+drop database if exists games_platform;
 
-create database games_plataform;
-use games_plataform;
+create database games_platform;
+use games_platform;
 
 create table client (
 	id INT NOT NULL	auto_increment,
