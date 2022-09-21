@@ -15,7 +15,7 @@ public class DataBase {
     private Connection connection;
     
     // banco de dados padrão
-    private String DATABASE_URL = "jdbc:mysql://localhost:3306/games_plataform";
+    private String DATABASE_URL = "jdbc:mysql://localhost:3306/games_platform";
     static final String USERNAME = "root";
     static final String PASSWORD = "";
 
