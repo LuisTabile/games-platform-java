@@ -5,7 +5,7 @@ import games.plataform.connection.DataBase;
 public class MainWindowForm extends javax.swing.JFrame {
 
     private DataBase db;
-    
+
     public MainWindowForm() {
         initComponents();
         db = new DataBase();
@@ -18,17 +18,22 @@ public class MainWindowForm extends javax.swing.JFrame {
         mainPanel = new javax.swing.JDesktopPane();
         menuBar = new javax.swing.JMenuBar();
         gamesMenu = new javax.swing.JMenu();
+        gamesMenuItem = new javax.swing.JMenuItem();
         publishersMenu = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         userMenu = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        clientsWithGamesMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Plataforma de jogos");
+        setResizable(false);
 
         javax.swing.GroupLayout mainPanelLayout = new javax.swing.GroupLayout(mainPanel);
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 890, Short.MAX_VALUE)
+            .addGap(0, 850, Short.MAX_VALUE)
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -37,14 +42,49 @@ public class MainWindowForm extends javax.swing.JFrame {
 
         gamesMenu.setMnemonic('f');
         gamesMenu.setText("Games");
+
+        gamesMenuItem.setText("List");
+        gamesMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gamesMenuItemActionPerformed(evt);
+            }
+        });
+        gamesMenu.add(gamesMenuItem);
+
         menuBar.add(gamesMenu);
 
         publishersMenu.setMnemonic('e');
         publishersMenu.setText("Publishers");
+
+        jMenuItem2.setText("List");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                publishersMenuItemActionPerformed(evt);
+            }
+        });
+        publishersMenu.add(jMenuItem2);
+
         menuBar.add(publishersMenu);
 
         userMenu.setMnemonic('h');
         userMenu.setText("User Profile");
+
+        jMenuItem1.setText("List");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clientsMenuItemActionPerformed(evt);
+            }
+        });
+        userMenu.add(jMenuItem1);
+
+        clientsWithGamesMenuItem.setLabel("List with Games");
+        clientsWithGamesMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clientsWithGamesMenuItemActionPerformed(evt);
+            }
+        });
+        userMenu.add(clientsWithGamesMenuItem);
+
         menuBar.add(userMenu);
 
         setJMenuBar(menuBar);
@@ -63,8 +103,40 @@ public class MainWindowForm extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void gamesMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gamesMenuItemActionPerformed
+        GamesListForm gamesListForm = new GamesListForm();
+        mainPanel.add(gamesListForm);
+        mainPanel.setVisible(true);
+        gamesListForm.setVisible(true);
+    }//GEN-LAST:event_gamesMenuItemActionPerformed
+
+    private void clientsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientsMenuItemActionPerformed
+        ClientsListForm clientsListForm = new ClientsListForm();
+        mainPanel.add(clientsListForm);
+        mainPanel.setVisible(true);
+        clientsListForm.setVisible(true);
+    }//GEN-LAST:event_clientsMenuItemActionPerformed
+
+    private void publishersMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publishersMenuItemActionPerformed
+        PublishListForm publisherListForm = new PublishListForm();
+        mainPanel.add(publisherListForm);
+        mainPanel.setVisible(true);
+        publisherListForm.setVisible(true);
+    }//GEN-LAST:event_publishersMenuItemActionPerformed
+
+    private void clientsWithGamesMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clientsWithGamesMenuItemActionPerformed
+        ClientsWithGamesListForm clientsWithGamesListForm = new ClientsWithGamesListForm();
+        mainPanel.add(clientsWithGamesListForm);
+        mainPanel.setVisible(true);
+        clientsWithGamesListForm.setVisible(true);
+    }//GEN-LAST:event_clientsWithGamesMenuItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem clientsWithGamesMenuItem;
     private javax.swing.JMenu gamesMenu;
+    private javax.swing.JMenuItem gamesMenuItem;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JDesktopPane mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenu publishersMenu;
