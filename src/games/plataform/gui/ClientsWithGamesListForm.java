@@ -1,22 +1,22 @@
 package games.plataform.gui;
 
 import games.plataform.connection.DataBase;
-import games.plataform.dbModels.Games;
+import games.plataform.dbModels.Clients;
 import games.plataform.dbModels.ResultSetTableModel;
 import java.sql.SQLException;
 
-public class GamesListForm extends javax.swing.JInternalFrame {
+public class ClientsWithGamesListForm extends javax.swing.JInternalFrame {
 
     static private ResultSetTableModel tableModel;
     DataBase db;
 
-    public GamesListForm() {
+    public ClientsWithGamesListForm() {
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         try{
             db = new DataBase();
             tableModel = new ResultSetTableModel(db.getConnection());
             initComponents();
-            tableModel.setQuery(Games.getGames());
+            tableModel.setQuery(Clients.getClientsWithGames());
             table.createDefaultColumnsFromModel();
         }catch(IllegalStateException | SQLException | ClassNotFoundException e){
             System.out.println(e.getMessage());
@@ -41,7 +41,7 @@ public class GamesListForm extends javax.swing.JInternalFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(850, 509));
 
-        jLabel3.setText("Lista de Jogos disponíveis");
+        jLabel3.setText("Lista de Usuários disponíveis");
 
         table.setAutoCreateColumnsFromModel(false);
         table.setModel(tableModel);
@@ -57,7 +57,7 @@ public class GamesListForm extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
