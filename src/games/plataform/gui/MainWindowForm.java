@@ -1,14 +1,12 @@
 package games.plataform.gui;
 
-import games.plataform.connection.DataBase;
+import games.plataform.utils.DbGlobal;
 
 public class MainWindowForm extends javax.swing.JFrame {
 
-    private DataBase db;
-
     public MainWindowForm() {
         initComponents();
-        db = new DataBase();
+        DbGlobal.generateDb();
     }
 
     @SuppressWarnings("unchecked")
@@ -19,6 +17,7 @@ public class MainWindowForm extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         gamesMenu = new javax.swing.JMenu();
         gamesMenuItem = new javax.swing.JMenuItem();
+        Store = new javax.swing.JMenuItem();
         publishersMenu = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         userMenu = new javax.swing.JMenu();
@@ -50,6 +49,14 @@ public class MainWindowForm extends javax.swing.JFrame {
             }
         });
         gamesMenu.add(gamesMenuItem);
+
+        Store.setText("Store");
+        Store.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                StoreActionPerformed(evt);
+            }
+        });
+        gamesMenu.add(Store);
 
         menuBar.add(gamesMenu);
 
@@ -131,7 +138,12 @@ public class MainWindowForm extends javax.swing.JFrame {
         clientsWithGamesListForm.setVisible(true);
     }//GEN-LAST:event_clientsWithGamesMenuItemActionPerformed
 
+    private void StoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_StoreActionPerformed
+        
+    }//GEN-LAST:event_StoreActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Store;
     private javax.swing.JMenuItem clientsWithGamesMenuItem;
     private javax.swing.JMenu gamesMenu;
     private javax.swing.JMenuItem gamesMenuItem;
