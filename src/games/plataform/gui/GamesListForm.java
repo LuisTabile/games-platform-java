@@ -3,17 +3,17 @@ package games.plataform.gui;
 import games.plataform.connection.DataBase;
 import games.plataform.dbModels.Games;
 import games.plataform.dbModels.ResultSetTableModel;
+import games.plataform.utils.DbGlobal;
 import java.sql.SQLException;
 
 public class GamesListForm extends javax.swing.JInternalFrame {
 
     static private ResultSetTableModel tableModel;
-    DataBase db;
 
     public GamesListForm() {
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         try{
-            db = new DataBase();
+            DataBase db = DbGlobal.getDb();
             tableModel = new ResultSetTableModel(db.getConnection());
             initComponents();
             tableModel.setQuery(Games.getGames());
