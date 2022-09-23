@@ -27,7 +27,7 @@ create table game (
     FOREIGN KEY (publisher_id) REFERENCES publisher(id)
 );
 
-create table compra (
+create table buy (
 	id INT NOT NULL	auto_increment,
 	client_id int,
     game_id int,
@@ -38,3 +38,4 @@ create table compra (
 
 INSERT INTO publisher VALUES (1, "Editora 1");
 INSERT INTO game VALUES (1, "Jogo 1", "Descrição 1", "2018-10-20", 100.00, 1);
+INSERT INTO client VALUES (1, "Cliente 1", 300.0);

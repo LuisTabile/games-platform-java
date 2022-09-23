@@ -18,12 +18,12 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gamesMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="Store">
+            <MenuItem class="javax.swing.JMenuItem" name="storeMenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Store"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="StoreActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="storeMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

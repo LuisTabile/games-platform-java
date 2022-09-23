@@ -19,6 +19,10 @@ public class DbGlobal {
         return db;
     }
 
+    /**
+     * Generate the Database and store it as static
+     *
+     */
     public static void generateDb() {
         DbGlobal.db = new DataBase();
     }

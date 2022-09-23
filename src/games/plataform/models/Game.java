@@ -10,16 +10,16 @@ public class Game {
     private final String name;
     private final String description;
     private final Date releaseDate;
-    private final int soldQuantity;
+    private final float price;
 
-    public Game(int id, int publisher_id, String publisher_name, String name, String description, Date releaseDate, int soldQuantity) {
+    public Game(int id, String name, String description, Date releaseDate, float price, int publisher_id, String publisher_name) {
         this.id = id;
         this.publisher_id = publisher_id;
         this.publisher_name = publisher_name;
         this.name = name;
         this.description = description;
         this.releaseDate = releaseDate;
-        this.soldQuantity = soldQuantity;
+        this.price = price;
     }
     
     /**
@@ -59,12 +59,12 @@ public class Game {
     }
     
     /**
-     * Get the value of soldQuantity
+     * Get the value of price
      *
-     * @return the value of soldQuantity
+     * @return the value of price
      */
-    public int getSoldQuantity() {
-        return soldQuantity;
+    public float getPrice() {
+        return price;
     }
     
     /**
