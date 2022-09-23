@@ -2,9 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package games.plataform.utils;
+package games.platform.utils;
 
-import games.plataform.connection.DataBase;
+import games.platform.connection.DataBase;
 
 public class DbGlobal {
 

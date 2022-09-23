@@ -1,7 +1,7 @@
-package games.plataform.fitters;
+package games.platform.fitters;
 
-import games.plataform.dbModels.Games;
-import games.plataform.models.Game;
+import games.platform.dbModels.Games;
+import games.platform.models.Game;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

@@ -1,19 +1,17 @@
-package games.plataform.models;
+package games.platform.models;
 
-import java.util.ArrayList;
-
-public class Publisher {
+public class Client {
     
     private final int id;
     private final String name;
-    private final ArrayList<Game> games;
+    private final float balance;
 
-    public Publisher(int id, String name, ArrayList<Game> games) {
+    public Client(int id, String name, float balance) {
         this.id = id;
         this.name = name;
-        this.games = games;
+        this.balance = balance;
     }
-    
+
     /**
      * Get the value of id
      *
@@ -32,5 +30,13 @@ public class Publisher {
         return name;
     }
 
+    /**
+     * Get the value of balance
+     *
+     * @return the value of balance
+     */
+    public float getBalance() {
+        return balance;
+    }
     
 }

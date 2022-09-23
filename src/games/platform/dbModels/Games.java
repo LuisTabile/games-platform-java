@@ -1,4 +1,4 @@
-package games.plataform.dbModels;
+package games.platform.dbModels;
 
 public class Games {
     
