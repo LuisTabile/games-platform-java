@@ -1,22 +1,22 @@
-package games.plataform.gui;
+package games.platform.gui;
 
-import games.plataform.connection.DataBase;
-import games.plataform.dbModels.Clients;
-import games.plataform.dbModels.ResultSetTableModel;
-import games.plataform.utils.DbGlobal;
+import games.platform.connection.DataBase;
+import games.platform.dbModels.Publishers;
+import games.platform.dbModels.ResultSetTableModel;
+import games.platform.utils.DbGlobal;
 import java.sql.SQLException;
 
-public class ClientsWithGamesListForm extends javax.swing.JInternalFrame {
+public class PublishListForm extends javax.swing.JInternalFrame {
 
     static private ResultSetTableModel tableModel;
 
-    public ClientsWithGamesListForm() {
+    public PublishListForm() {
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         try{
             DataBase db = DbGlobal.getDb();
             tableModel = new ResultSetTableModel(db.getConnection());
             initComponents();
-            tableModel.setQuery(Clients.getClientsWithGames());
+            tableModel.setQuery(Publishers.getPublishers());
             table.createDefaultColumnsFromModel();
         }catch(IllegalStateException | SQLException | ClassNotFoundException e){
             System.out.println(e.getMessage());

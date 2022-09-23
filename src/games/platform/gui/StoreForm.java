@@ -1,12 +1,12 @@
-package games.plataform.gui;
+package games.platform.gui;
 
-import games.plataform.actions.ClientActions;
-import games.plataform.connection.DataBase;
-import games.plataform.fitters.ClientsFitter;
-import games.plataform.fitters.GamesFitter;
-import games.plataform.models.Client;
-import games.plataform.models.Game;
-import games.plataform.utils.DbGlobal;
+import games.platform.actions.ClientActions;
+import games.platform.connection.DataBase;
+import games.platform.fitters.ClientsFitter;
+import games.platform.fitters.GamesFitter;
+import games.platform.models.Client;
+import games.platform.models.Game;
+import games.platform.utils.DbGlobal;
 
 import java.sql.SQLException;
 import java.util.ArrayList;

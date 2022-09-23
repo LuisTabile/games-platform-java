@@ -1,22 +1,22 @@
-package games.plataform.gui;
+package games.platform.gui;
 
-import games.plataform.connection.DataBase;
-import games.plataform.dbModels.Publishers;
-import games.plataform.dbModels.ResultSetTableModel;
-import games.plataform.utils.DbGlobal;
+import games.platform.connection.DataBase;
+import games.platform.dbModels.Games;
+import games.platform.dbModels.ResultSetTableModel;
+import games.platform.utils.DbGlobal;
 import java.sql.SQLException;
 
-public class PublishListForm extends javax.swing.JInternalFrame {
+public class GamesListForm extends javax.swing.JInternalFrame {
 
     static private ResultSetTableModel tableModel;
 
-    public PublishListForm() {
+    public GamesListForm() {
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         try{
             DataBase db = DbGlobal.getDb();
             tableModel = new ResultSetTableModel(db.getConnection());
             initComponents();
-            tableModel.setQuery(Publishers.getPublishers());
+            tableModel.setQuery(Games.getGames());
             table.createDefaultColumnsFromModel();
         }catch(IllegalStateException | SQLException | ClassNotFoundException e){
             System.out.println(e.getMessage());
@@ -41,7 +41,7 @@ public class PublishListForm extends javax.swing.JInternalFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(850, 509));
 
-        jLabel3.setText("Lista de Usuários disponíveis");
+        jLabel3.setText("Lista de Jogos disponíveis");
 
         table.setAutoCreateColumnsFromModel(false);
         table.setModel(tableModel);
@@ -57,7 +57,7 @@ public class PublishListForm extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );

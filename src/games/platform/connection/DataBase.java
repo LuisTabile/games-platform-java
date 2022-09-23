@@ -1,5 +1,5 @@
 
-package games.plataform.connection;
+package games.platform.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

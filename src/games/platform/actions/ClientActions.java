@@ -1,9 +1,9 @@
-package games.plataform.actions;
+package games.platform.actions;
 
-import games.plataform.dbModels.Buys;
-import games.plataform.dbModels.Clients;
-import games.plataform.models.Client;
-import games.plataform.models.Game;
+import games.platform.dbModels.Buys;
+import games.platform.dbModels.Clients;
+import games.platform.models.Client;
+import games.platform.models.Game;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;

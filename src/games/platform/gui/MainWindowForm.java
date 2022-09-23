@@ -1,6 +1,6 @@
-package games.plataform.gui;
+package games.platform.gui;
 
-import games.plataform.utils.DbGlobal;
+import games.platform.utils.DbGlobal;
 
 public class MainWindowForm extends javax.swing.JFrame {
 
@@ -146,7 +146,6 @@ public class MainWindowForm extends javax.swing.JFrame {
     }//GEN-LAST:event_storeMenuItemActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem Store;
     private javax.swing.JMenuItem clientsWithGamesMenuItem;
     private javax.swing.JMenu gamesMenu;
     private javax.swing.JMenuItem gamesMenuItem;

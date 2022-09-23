@@ -1,6 +1,6 @@
-package games.plataform.run;
+package games.platform.run;
 
-import games.plataform.gui.MainWindowForm;
+import games.platform.gui.MainWindowForm;
 
 public class Main {
 

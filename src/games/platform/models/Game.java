@@ -1,4 +1,4 @@
-package games.plataform.models;
+package games.platform.models;
 
 import java.util.Date;
 
