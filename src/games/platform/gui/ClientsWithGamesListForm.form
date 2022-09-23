@@ -36,7 +36,7 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Component id="jScrollPane1" pref="838" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Component id="jLabel3" min="-2" pref="201" max="-2" attributes="0"/>
+                      <Component id="jLabel3" min="-2" pref="281" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                   </Group>
               </Group>
@@ -50,7 +50,7 @@
               <EmptySpace min="-2" pref="13" max="-2" attributes="0"/>
               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="432" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="436" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -59,7 +59,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Lista de Usu&#xe1;rios dispon&#xed;veis"/>
+        <Property name="text" type="java.lang.String" value="Lista de Usu&#xe1;rios dispon&#xed;veis com seus jogos"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">

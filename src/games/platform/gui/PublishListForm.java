@@ -41,7 +41,7 @@ public class PublishListForm extends javax.swing.JInternalFrame {
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(850, 509));
 
-        jLabel3.setText("Lista de Usuários disponíveis");
+        jLabel3.setText("Lista de Editoras de Jogos");
 
         table.setAutoCreateColumnsFromModel(false);
         table.setModel(tableModel);

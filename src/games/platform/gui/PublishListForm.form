@@ -59,7 +59,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Lista de Usu&#xe1;rios dispon&#xed;veis"/>
+        <Property name="text" type="java.lang.String" value="Lista de Editoras de Jogos"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
