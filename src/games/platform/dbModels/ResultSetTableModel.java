@@ -86,7 +86,7 @@ public class ResultSetTableModel extends AbstractTableModel {
         }
 
         try {
-            return metaData.getColumnName(column + 1);
+            return metaData.getColumnLabel(column + 1);
         } catch (SQLException sqlException) {
             sqlException.printStackTrace();
         }
