@@ -21,7 +21,7 @@ public class Clients {
      * @return all clients with all games
      */
     public static String getClientsWithGames() {
-        return "SELECT * FROM client JOIN buy ON (client.id = buy.client_id) JOIN game ON (game.id = buy.game_id)";
+        return "SELECT c.id, c.name, b.game_id, g.name as game_name FROM client as c JOIN buy as b ON (c.id = b.client_id) JOIN game as g ON (g.id = b.game_id)";
     }
     
     /**

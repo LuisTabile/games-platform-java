@@ -1,25 +1,29 @@
 package games.platform.gui;
 
 import games.platform.connection.DataBase;
+import games.platform.crud.gui.ClientForm;
 import games.platform.dbModels.Clients;
 import games.platform.dbModels.ResultSetTableModel;
+import games.platform.models.Client;
 import games.platform.utils.DbGlobal;
 import java.sql.SQLException;
+import javax.swing.JDesktopPane;
 
 public class ClientsListForm extends javax.swing.JInternalFrame {
 
     static private ResultSetTableModel tableModel;
-    
+    private JDesktopPane mainPanel;
 
-    public ClientsListForm() {
+    public ClientsListForm(JDesktopPane mainPanel) {
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
-        try{
+        this.mainPanel = mainPanel;
+        try {
             DataBase db = DbGlobal.getDb();
             tableModel = new ResultSetTableModel(db.getConnection());
             initComponents();
             tableModel.setQuery(Clients.getClients());
             table.createDefaultColumnsFromModel();
-        }catch(IllegalStateException | SQLException | ClassNotFoundException e){
+        } catch (IllegalStateException | SQLException | ClassNotFoundException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -36,6 +40,8 @@ public class ClientsListForm extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
+        editClientButton = new javax.swing.JButton();
+        removeClientButton = new javax.swing.JButton();
 
         setBorder(null);
         setMaximizable(true);
@@ -49,6 +55,20 @@ public class ClientsListForm extends javax.swing.JInternalFrame {
         table.setName(""); // NOI18N
         jScrollPane1.setViewportView(table);
 
+        editClientButton.setText("Editar");
+        editClientButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editClientButtonActionPerformed(evt);
+            }
+        });
+
+        removeClientButton.setText("Remover");
+        removeClientButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeClientButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -59,26 +79,64 @@ public class ClientsListForm extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(removeClientButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(editClientButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(jLabel3)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(editClientButton)
+                    .addComponent(removeClientButton))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private Client getClientBySelectedRow(int row) {
+        int clientSelectedId = (int) table.getValueAt(row, 0);
+        String clientSelectedName = (String) table.getValueAt(row, 1);
+        float clientSelectedBalance = (float) table.getValueAt(row, 2);
+        return new Client(clientSelectedId, clientSelectedName, clientSelectedBalance);
+    }
+
+    private void editClientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editClientButtonActionPerformed
+        int selectedRow = table.getSelectedRow();
+        if (selectedRow >= 0) {
+            ClientForm clientUpdateForm = new ClientForm(getClientBySelectedRow(selectedRow), false);
+            mainPanel.add(clientUpdateForm);
+            mainPanel.setVisible(true);
+            clientUpdateForm.setVisible(true);
+        }
+    }//GEN-LAST:event_editClientButtonActionPerformed
+
+    private void removeClientButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeClientButtonActionPerformed
+        int selectedRow = table.getSelectedRow();
+        if (selectedRow >= 0) {
+            Client clientToRemove = getClientBySelectedRow(selectedRow);
+            games.platform.crud.models.Client.removeClient(clientToRemove, DbGlobal.getDb().getConnection());
+            try {
+                tableModel.setQuery(Clients.getClients());
+            } catch (SQLException | IllegalStateException ex) {
+                System.out.println("Erro");
+            }
+        }
+    }//GEN-LAST:event_removeClientButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton editClientButton;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton removeClientButton;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

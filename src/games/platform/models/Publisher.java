@@ -5,9 +5,15 @@ import java.util.ArrayList;
 public class Publisher {
     
     private final int id;
-    private final String name;
+    private String name;
     private final ArrayList<Game> games;
 
+    public Publisher(int id, String name) {
+        this.id = id;
+        this.name = name;
+        this.games = new ArrayList<>();
+    }
+    
     public Publisher(int id, String name, ArrayList<Game> games) {
         this.id = id;
         this.name = name;
@@ -30,6 +36,15 @@ public class Publisher {
      */
     public String getName() {
         return name;
+    }
+    
+    /**
+     * Set the value of name
+     *
+     * @param name the value of name
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
     

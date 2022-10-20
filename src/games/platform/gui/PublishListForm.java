@@ -1,24 +1,29 @@
 package games.platform.gui;
 
 import games.platform.connection.DataBase;
+import games.platform.crud.gui.PublisherForm;
 import games.platform.dbModels.Publishers;
 import games.platform.dbModels.ResultSetTableModel;
+import games.platform.models.Publisher;
 import games.platform.utils.DbGlobal;
 import java.sql.SQLException;
+import javax.swing.JDesktopPane;
 
 public class PublishListForm extends javax.swing.JInternalFrame {
 
     static private ResultSetTableModel tableModel;
+    private JDesktopPane mainPanel;
 
-    public PublishListForm() {
+    public PublishListForm(JDesktopPane mainPanel) {
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
-        try{
+        this.mainPanel = mainPanel;
+        try {
             DataBase db = DbGlobal.getDb();
             tableModel = new ResultSetTableModel(db.getConnection());
             initComponents();
             tableModel.setQuery(Publishers.getPublishers());
             table.createDefaultColumnsFromModel();
-        }catch(IllegalStateException | SQLException | ClassNotFoundException e){
+        } catch (IllegalStateException | SQLException | ClassNotFoundException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -35,6 +40,8 @@ public class PublishListForm extends javax.swing.JInternalFrame {
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
+        removePublisherButton = new javax.swing.JButton();
+        editPublisherButton = new javax.swing.JButton();
 
         setBorder(null);
         setMaximizable(true);
@@ -48,6 +55,20 @@ public class PublishListForm extends javax.swing.JInternalFrame {
         table.setName(""); // NOI18N
         jScrollPane1.setViewportView(table);
 
+        removePublisherButton.setText("Remover");
+        removePublisherButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removePublisherButtonActionPerformed(evt);
+            }
+        });
+
+        editPublisherButton.setText("Editar");
+        editPublisherButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editPublisherButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -58,26 +79,63 @@ public class PublishListForm extends javax.swing.JInternalFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 838, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(removePublisherButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(editPublisherButton)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(jLabel3)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(editPublisherButton)
+                        .addComponent(removePublisherButton))
+                    .addComponent(jLabel3))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 429, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private Publisher getPublisherBySelectedRow(int row) {
+        int publisherSelectedId = (int) table.getValueAt(row, 0);
+        String publisherSelectedName = (String) table.getValueAt(row, 1);
+        return new Publisher(publisherSelectedId, publisherSelectedName);
+    }
+
+    private void removePublisherButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removePublisherButtonActionPerformed
+        int selectedRow = table.getSelectedRow();
+        if (selectedRow >= 0) {
+            Publisher publisherToRemove = getPublisherBySelectedRow(selectedRow);
+            games.platform.crud.models.Publisher.removePublisher(publisherToRemove, DbGlobal.getDb().getConnection());
+            try {
+                tableModel.setQuery(Publishers.getPublishers());
+            } catch (SQLException | IllegalStateException ex) {
+                System.out.println("Erro");
+            }
+        }
+    }//GEN-LAST:event_removePublisherButtonActionPerformed
+
+    private void editPublisherButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editPublisherButtonActionPerformed
+        int selectedRow = table.getSelectedRow();
+        if (selectedRow >= 0) {
+            PublisherForm publisherUpdateForm = new PublisherForm(getPublisherBySelectedRow(selectedRow), false);
+            mainPanel.add(publisherUpdateForm);
+            mainPanel.setVisible(true);
+            publisherUpdateForm.setVisible(true);
+        }
+    }//GEN-LAST:event_editPublisherButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton editPublisherButton;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton removePublisherButton;
     private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

@@ -8,7 +8,7 @@ public class Games {
      * @return all games from all publishers
      */
     public static String getGames(){
-        return "SELECT * FROM game INNER JOIN publisher ON (game.publisher_id = publisher.id)";
+        return "SELECT g.id, g.name, g.description, g.release_date, g.price, g.publisher_id, p.name as publisher_name FROM game as g INNER JOIN publisher as p ON (g.publisher_id = p.id)";
     }
     
     /**
