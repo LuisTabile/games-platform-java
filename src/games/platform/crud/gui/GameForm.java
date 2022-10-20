@@ -1,24 +1,45 @@
 package games.platform.crud.gui;
 
+import games.platform.connection.DataBase;
+import games.platform.fitters.PublishersFitter;
+import games.platform.models.Publisher;
 import games.platform.models.Game;
 import games.platform.utils.DbGlobal;
+import java.util.ArrayList;
 import java.util.Date;
 
-public class GameForm extends javax.swing.JInternalFrame {
+import java.sql.SQLException;
 
+public class GameForm extends javax.swing.JInternalFrame {
+    
+    DataBase db;
+    
     private final String baseGameIdText = "ID do Jogo: ";
     private final Game game;
     private final boolean newGame;
+    
+    private ArrayList<Publisher> publishers;
+    private Publisher selectedPublisher;
 
     public GameForm(Game game, boolean newGame) {
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
         this.game = game;
         this.newGame = newGame;
+        db = DbGlobal.getDb();
 
         initComponents();
         populateFields();
     }
 
+    public void populateComboBoxes() {
+        try {
+            this.publishers = PublishersFitter.getAllPublishers(db.getConnection());
+            this.publishers.forEach((client) -> publishersComboBox.addItem(client.getName()));
+        } catch (SQLException e) {
+            System.out.println("Ocorreu um erro: " + e.getMessage());
+        }        
+    }
+    
     private void populateFields() {
         if (!newGame) {
             gameIdLabel.setText(baseGameIdText + game.getId());
@@ -31,6 +52,8 @@ public class GameForm extends javax.swing.JInternalFrame {
         gameDescriptionField.setText(game.getDescription());
         gameReleaseDateField.setValue(game.getReleaseDate());
         gamePublisherNameField.setText(game.getPublisherName());
+        publishersComboBox.setVisible(newGame);
+        populateComboBoxes();
     }
 
     /**
@@ -58,6 +81,8 @@ public class GameForm extends javax.swing.JInternalFrame {
         gameReleaseDateField = new javax.swing.JFormattedTextField();
         jLabel5 = new javax.swing.JLabel();
         gamePublisherNameField = new javax.swing.JTextField();
+        publishersComboBox = new javax.swing.JComboBox<>();
+        descriptionErrorLabel = new javax.swing.JLabel();
 
         setBorder(null);
         setMaximizable(true);
@@ -94,6 +119,14 @@ public class GameForm extends javax.swing.JInternalFrame {
         gamePublisherNameField.setEditable(false);
         gamePublisherNameField.setBackground(new java.awt.Color(247, 247, 247));
 
+        publishersComboBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                publishersComboBoxActionPerformed(evt);
+            }
+        });
+
+        descriptionErrorLabel.setForeground(new java.awt.Color(229, 57, 53));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -110,10 +143,11 @@ public class GameForm extends javax.swing.JInternalFrame {
                                 .addComponent(updateButton)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(responseLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 245, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 242, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
-                            .addComponent(gamePublisherNameField)))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 268, Short.MAX_VALUE)
+                            .addComponent(gamePublisherNameField, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(publishersComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(gameDescriptionField)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -127,7 +161,8 @@ public class GameForm extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(priceErrorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(gamePriceField)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE))))
+                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)))
+                    .addComponent(descriptionErrorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(45, 45, 45))
         );
         layout.setVerticalGroup(
@@ -152,7 +187,9 @@ public class GameForm extends javax.swing.JInternalFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(gameDescriptionField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(48, 48, 48)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(descriptionErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
@@ -163,12 +200,14 @@ public class GameForm extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(gamePublisherNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(dateErrorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(dateErrorLabel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(publishersComboBox, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(responseLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(updateButton))
-                .addContainerGap(100, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         pack();
@@ -198,6 +237,11 @@ public class GameForm extends javax.swing.JInternalFrame {
             return;
         }
         
+        if (newDescription.length() < 1) {
+            descriptionErrorLabel.setText("Caracteres mínimos 1.");
+            return;
+        }
+        
         if (newDate == null || !(newDate instanceof Date)) {
             dateErrorLabel.setText("Erro ao transformar em Date (dd/MM/yyyy)");
             return;
@@ -209,6 +253,7 @@ public class GameForm extends javax.swing.JInternalFrame {
         game.setReleaseDate(newDate);
         String response;
         if (newGame) {
+            game.setPublisherId(selectedPublisher.getId());
             response = games.platform.crud.models.Game.createGame(game, DbGlobal.getDb().getConnection());
         } else {
             response = games.platform.crud.models.Game.updateGame(game, DbGlobal.getDb().getConnection());
@@ -216,9 +261,16 @@ public class GameForm extends javax.swing.JInternalFrame {
         responseLabel.setText(response);
     }//GEN-LAST:event_updateButtonActionPerformed
 
+    private void publishersComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_publishersComboBoxActionPerformed
+        int selectedItem = publishersComboBox.getSelectedIndex();
+        this.selectedPublisher = this.publishers.get(selectedItem);
+        gamePublisherNameField.setText(selectedPublisher.getName());
+    }//GEN-LAST:event_publishersComboBoxActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel dateErrorLabel;
+    private javax.swing.JLabel descriptionErrorLabel;
     private javax.swing.JTextField gameDescriptionField;
     private javax.swing.JLabel gameIdLabel;
     private javax.swing.JTextField gameNameField;
@@ -232,6 +284,7 @@ public class GameForm extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel nameErrorLabel;
     private javax.swing.JLabel priceErrorLabel;
+    private javax.swing.JComboBox<String> publishersComboBox;
     private javax.swing.JLabel responseLabel;
     private javax.swing.JButton updateButton;
     // End of variables declaration//GEN-END:variables
