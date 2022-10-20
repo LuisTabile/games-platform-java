@@ -20,7 +20,7 @@ public class Publisher {
             pstmt.executeUpdate();
             pstmt.close();
 
-            return ("Editora Inserido");
+            return ("Editora Inserida");
         } catch (SQLException ex) {
             return ("Erro em: " + ex.getMessage());
         }
