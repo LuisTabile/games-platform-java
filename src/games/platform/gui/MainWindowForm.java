@@ -7,6 +7,7 @@ import games.platform.models.Client;
 import games.platform.models.Game;
 import games.platform.models.Publisher;
 import games.platform.utils.DbGlobal;
+import games.platform.xml.crud.BuysToXMLForm;
 
 public class MainWindowForm extends javax.swing.JFrame {
 
@@ -26,12 +27,14 @@ public class MainWindowForm extends javax.swing.JFrame {
         storeMenuItem = new javax.swing.JMenuItem();
         gameCreateMenuItem = new javax.swing.JMenuItem();
         publishersMenu = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
+        publishersListMenuItem = new javax.swing.JMenuItem();
         createPublisherMenuItem = new javax.swing.JMenuItem();
         userMenu = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        clientsMenuItem = new javax.swing.JMenuItem();
         clientsWithGamesMenuItem = new javax.swing.JMenuItem();
         createClientMenuItem = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        buysToXMLMenuItem = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Plataforma de jogos");
@@ -80,13 +83,13 @@ public class MainWindowForm extends javax.swing.JFrame {
         publishersMenu.setMnemonic('e');
         publishersMenu.setText("Publishers");
 
-        jMenuItem2.setText("List");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        publishersListMenuItem.setText("List");
+        publishersListMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 publishersMenuItemActionPerformed(evt);
             }
         });
-        publishersMenu.add(jMenuItem2);
+        publishersMenu.add(publishersListMenuItem);
 
         createPublisherMenuItem.setText("Create");
         createPublisherMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -101,13 +104,13 @@ public class MainWindowForm extends javax.swing.JFrame {
         userMenu.setMnemonic('h');
         userMenu.setText("User Profile");
 
-        jMenuItem1.setText("List");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        clientsMenuItem.setText("List");
+        clientsMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clientsMenuItemActionPerformed(evt);
             }
         });
-        userMenu.add(jMenuItem1);
+        userMenu.add(clientsMenuItem);
 
         clientsWithGamesMenuItem.setLabel("List with Games");
         clientsWithGamesMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -126,6 +129,18 @@ public class MainWindowForm extends javax.swing.JFrame {
         userMenu.add(createClientMenuItem);
 
         menuBar.add(userMenu);
+
+        jMenu1.setText("XML");
+
+        buysToXMLMenuItem.setText("Buys to XML");
+        buysToXMLMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buysToXMLMenuItemActionPerformed(evt);
+            }
+        });
+        jMenu1.add(buysToXMLMenuItem);
+
+        menuBar.add(jMenu1);
 
         setJMenuBar(menuBar);
 
@@ -199,17 +214,26 @@ public class MainWindowForm extends javax.swing.JFrame {
         gameForm.setVisible(true);
     }//GEN-LAST:event_gameCreateMenuItemActionPerformed
 
+    private void buysToXMLMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buysToXMLMenuItemActionPerformed
+        BuysToXMLForm buysToXMLForm = new BuysToXMLForm();
+        mainPanel.add(buysToXMLForm);
+        mainPanel.setVisible(true);
+        buysToXMLForm.setVisible(true);
+    }//GEN-LAST:event_buysToXMLMenuItemActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem buysToXMLMenuItem;
+    private javax.swing.JMenuItem clientsMenuItem;
     private javax.swing.JMenuItem clientsWithGamesMenuItem;
     private javax.swing.JMenuItem createClientMenuItem;
     private javax.swing.JMenuItem createPublisherMenuItem;
     private javax.swing.JMenuItem gameCreateMenuItem;
     private javax.swing.JMenu gamesMenu;
     private javax.swing.JMenuItem gamesMenuItem;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JDesktopPane mainPanel;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem publishersListMenuItem;
     private javax.swing.JMenu publishersMenu;
     private javax.swing.JMenuItem storeMenuItem;
     private javax.swing.JMenu userMenu;
