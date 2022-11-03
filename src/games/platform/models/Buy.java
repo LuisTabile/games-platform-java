@@ -48,7 +48,16 @@ public class Buy {
     public String getClientName() {
         return client_name;
     }
-
+    
+    /**
+     * Get the client
+     *
+     * @return the client
+     */
+    public Client getClient() {
+        return new Client(client_id, client_name, 0);
+    }
+    
     /**
      * Get the value of game id
      *
@@ -74,6 +83,15 @@ public class Buy {
      */
     public float getGamePrice() {
         return game_price;
+    }
+    
+    /**
+     * Get the game
+     *
+     * @return the game
+     */
+    public Game getGame() {
+        return new Game(game_id, game_name, "", null, game_price, publisher_id, publisher_name);
     }
 
     /**
