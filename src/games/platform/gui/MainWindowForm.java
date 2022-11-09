@@ -7,7 +7,7 @@ import games.platform.models.Client;
 import games.platform.models.Game;
 import games.platform.models.Publisher;
 import games.platform.utils.DbGlobal;
-import games.platform.xml.crud.BuysToXMLForm;
+import games.platform.xml.gui.BuysToXMLForm;
 
 public class MainWindowForm extends javax.swing.JFrame {
 

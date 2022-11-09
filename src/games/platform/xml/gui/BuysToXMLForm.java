@@ -1,4 +1,4 @@
-package games.platform.xml.crud;
+package games.platform.xml.gui;
 
 import games.platform.gui.*;
 import games.platform.connection.DataBase;
