@@ -4,8 +4,10 @@ import games.platform.connection.DataBase;
 import games.platform.crud.gui.PublisherForm;
 import games.platform.dbModels.Publishers;
 import games.platform.dbModels.ResultSetTableModel;
+import games.platform.logger.AppLogger;
 import games.platform.models.Publisher;
 import games.platform.utils.DbGlobal;
+import games.platform.utils.LoggerGlobal;
 import java.sql.SQLException;
 import javax.swing.JDesktopPane;
 
@@ -24,7 +26,7 @@ public class PublishListForm extends javax.swing.JInternalFrame {
             tableModel.setQuery(Publishers.getPublishers());
             table.createDefaultColumnsFromModel();
         } catch (IllegalStateException | SQLException | ClassNotFoundException e) {
-            System.out.println(e.getMessage());
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro ao conectar o Banco de Dados. " + e.getMessage());
         }
     }
 
@@ -116,7 +118,7 @@ public class PublishListForm extends javax.swing.JInternalFrame {
             try {
                 tableModel.setQuery(Publishers.getPublishers());
             } catch (SQLException | IllegalStateException ex) {
-                System.out.println("Erro");
+                LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro ao conectar o Banco de Dados. " + ex.getMessage());
             }
         }
     }//GEN-LAST:event_removePublisherButtonActionPerformed

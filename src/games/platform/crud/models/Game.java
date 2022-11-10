@@ -1,5 +1,7 @@
 package games.platform.crud.models;
 
+import games.platform.logger.AppLogger;
+import games.platform.utils.LoggerGlobal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -24,8 +26,10 @@ public class Game {
             pstmt.executeUpdate();
             pstmt.close();
 
+            LoggerGlobal.getLogger().addLog(AppLogger.getInfoLevel(), "Jogo Inserido: " + game.getName());
             return ("Jogo Inserido");
         } catch (SQLException ex) {
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro em: " + ex.getMessage());
             return ("Erro em: " + ex.getMessage());
         }
     }
@@ -47,8 +51,10 @@ public class Game {
             pstmt.executeUpdate();
             pstmt.close();
 
+            LoggerGlobal.getLogger().addLog(AppLogger.getInfoLevel(), "Jogo Atualizado: " + game.getName());
             return ("Jogo Atualizado");
         } catch (SQLException ex) {
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro em: " + ex.getMessage());
             return ("Erro em: " + ex.getMessage());
         }
     }
@@ -67,8 +73,10 @@ public class Game {
             pstmt.executeUpdate();
             pstmt.close();
 
+            LoggerGlobal.getLogger().addLog(AppLogger.getInfoLevel(), "Jogo Removido: " + game.getName());
             return ("Jogo Removido");
         } catch (SQLException ex) {
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro em: " + ex.getMessage());
             return ("Erro em: " + ex.getMessage());
         }
     }

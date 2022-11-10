@@ -1,9 +1,11 @@
 package games.platform.xml;
 
+import games.platform.logger.AppLogger;
 import games.platform.models.Buy;
 import games.platform.models.Client;
 import games.platform.models.Game;
 import games.platform.models.Publisher;
+import games.platform.utils.LoggerGlobal;
 import java.util.ArrayList;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -28,7 +30,7 @@ public class BuyToXML {
             ManipuladorXML.writeXmlFile(doc, "./compras.xml");
             
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro ao conectar o Banco de Dados. " + e.getMessage());
         }
 
     }

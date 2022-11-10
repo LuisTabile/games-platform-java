@@ -1,11 +1,10 @@
 package games.platform.utils;
 
+import games.platform.logger.AppLogger;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class DateParser {
 
@@ -45,6 +44,7 @@ public class DateParser {
         try {
             dateParsed = new SimpleDateFormat(DATABASE_FORMAT).parse(date);
         } catch (ParseException ex) {
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro ao conectar o Banco de Dados. " + ex.getMessage());
             return null;
         }
         return dateParsed;

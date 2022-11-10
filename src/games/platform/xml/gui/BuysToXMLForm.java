@@ -1,14 +1,13 @@
 package games.platform.xml.gui;
 
-import games.platform.gui.*;
 import games.platform.connection.DataBase;
 import games.platform.fitters.BuysFitter;
+import games.platform.logger.AppLogger;
 import games.platform.utils.DbGlobal;
+import games.platform.utils.LoggerGlobal;
 import games.platform.xml.BuyToXML;
 
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class BuysToXMLForm extends javax.swing.JInternalFrame {
 
@@ -16,10 +15,10 @@ public class BuysToXMLForm extends javax.swing.JInternalFrame {
 
     public BuysToXMLForm() {
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
-        try{
+        try {
             db = DbGlobal.getDb();
             initComponents();
-        }catch(IllegalStateException e){
+        } catch (IllegalStateException e) {
             System.out.println(e.getMessage());
         }
     }
@@ -87,8 +86,9 @@ public class BuysToXMLForm extends javax.swing.JInternalFrame {
         try {
             BuyToXML.mountXMLFromBuys(BuysFitter.getAllBuys(db.getConnection()));
             messageLabel.setText("XML gerado!");
+            LoggerGlobal.getLogger().addLog(AppLogger.getInfoLevel(), "XML gerado!");
         } catch (SQLException ex) {
-            Logger.getLogger(MainWindowForm.class.getName()).log(Level.SEVERE, null, ex);
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro ao conectar o Banco de Dados. " + ex.getMessage());
         }
     }//GEN-LAST:event_generateButtonActionPerformed
 

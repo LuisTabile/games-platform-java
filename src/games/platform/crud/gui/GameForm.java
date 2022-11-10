@@ -2,9 +2,11 @@ package games.platform.crud.gui;
 
 import games.platform.connection.DataBase;
 import games.platform.fitters.PublishersFitter;
+import games.platform.logger.AppLogger;
 import games.platform.models.Publisher;
 import games.platform.models.Game;
 import games.platform.utils.DbGlobal;
+import games.platform.utils.LoggerGlobal;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -36,7 +38,7 @@ public class GameForm extends javax.swing.JInternalFrame {
             this.publishers = PublishersFitter.getAllPublishers(db.getConnection());
             this.publishers.forEach((client) -> publishersComboBox.addItem(client.getName()));
         } catch (SQLException e) {
-            System.out.println("Ocorreu um erro: " + e.getMessage());
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Ocorreu um erro: " + e.getMessage());
         }        
     }
     

@@ -4,8 +4,10 @@ import games.platform.connection.DataBase;
 import games.platform.crud.gui.GameForm;
 import games.platform.dbModels.Games;
 import games.platform.dbModels.ResultSetTableModel;
+import games.platform.logger.AppLogger;
 import games.platform.models.Game;
 import games.platform.utils.DbGlobal;
+import games.platform.utils.LoggerGlobal;
 import java.sql.SQLException;
 import java.util.Date;
 import javax.swing.JDesktopPane;
@@ -25,7 +27,7 @@ public class GamesListForm extends javax.swing.JInternalFrame {
             tableModel.setQuery(Games.getGames());
             table.createDefaultColumnsFromModel();
         } catch (IllegalStateException | SQLException | ClassNotFoundException e) {
-            System.out.println(e.getMessage());
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro ao conectar o Banco de Dados. " + e.getMessage());
         }
     }
 
@@ -122,7 +124,7 @@ public class GamesListForm extends javax.swing.JInternalFrame {
             try {
                 tableModel.setQuery(Games.getGames());
             } catch (SQLException | IllegalStateException ex) {
-                System.out.println("Erro");
+                LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro ao conectar o Banco de Dados. " + ex.getMessage());
             }
         }
     }//GEN-LAST:event_removeGameButtonActionPerformed
