@@ -1,7 +1,9 @@
 package games.platform.crud.gui;
 
+import games.platform.logger.AppLogger;
 import games.platform.models.Client;
 import games.platform.utils.DbGlobal;
+import games.platform.utils.LoggerGlobal;
 
 public class ClientForm extends javax.swing.JInternalFrame {
 
@@ -140,6 +142,7 @@ public class ClientForm extends javax.swing.JInternalFrame {
         try {
             newBalance = Float.valueOf(clientBalanceField.getText());
         } catch (NumberFormatException ex) {
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro ao transformar em float");
             balanceErrorLabel.setText("Erro ao transformar em float");
             return;
         }

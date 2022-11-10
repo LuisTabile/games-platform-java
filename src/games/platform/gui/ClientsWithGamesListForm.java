@@ -3,7 +3,9 @@ package games.platform.gui;
 import games.platform.connection.DataBase;
 import games.platform.dbModels.Clients;
 import games.platform.dbModels.ResultSetTableModel;
+import games.platform.logger.AppLogger;
 import games.platform.utils.DbGlobal;
+import games.platform.utils.LoggerGlobal;
 import java.sql.SQLException;
 
 public class ClientsWithGamesListForm extends javax.swing.JInternalFrame {
@@ -12,14 +14,14 @@ public class ClientsWithGamesListForm extends javax.swing.JInternalFrame {
 
     public ClientsWithGamesListForm() {
         ((javax.swing.plaf.basic.BasicInternalFrameUI) this.getUI()).setNorthPane(null);
-        try{
+        try {
             DataBase db = DbGlobal.getDb();
             tableModel = new ResultSetTableModel(db.getConnection());
             initComponents();
             tableModel.setQuery(Clients.getClientsWithGames());
             table.createDefaultColumnsFromModel();
-        }catch(IllegalStateException | SQLException | ClassNotFoundException e){
-            System.out.println(e.getMessage());
+        } catch (IllegalStateException | SQLException | ClassNotFoundException e) {
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro ao conectar o Banco de Dados. " + e.getMessage());
         }
     }
 
