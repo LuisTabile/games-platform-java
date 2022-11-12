@@ -4,9 +4,11 @@ import games.platform.actions.ClientActions;
 import games.platform.connection.DataBase;
 import games.platform.fitters.ClientsFitter;
 import games.platform.fitters.GamesFitter;
+import games.platform.logger.AppLogger;
 import games.platform.models.Client;
 import games.platform.models.Game;
 import games.platform.utils.DbGlobal;
+import games.platform.utils.LoggerGlobal;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -28,7 +30,7 @@ public class StoreForm extends javax.swing.JInternalFrame {
             initComponents();
             populateComboBoxes();
         }catch(IllegalStateException e){
-            System.out.println(e.getMessage());
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro ao conectar o Banco de Dados. " + e.getMessage());
         }
     }
     
@@ -39,7 +41,7 @@ public class StoreForm extends javax.swing.JInternalFrame {
             this.games = GamesFitter.getAllGames(db.getConnection());
             this.games.forEach((game) -> gamesComboBox.addItem(game.getName()));
         } catch (SQLException e) {
-            System.out.println("Ocorreu um erro: " + e.getMessage());
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro ao conectar o Banco de Dados. " + e.getMessage());
         }        
     }
 

@@ -8,12 +8,14 @@ import games.platform.models.Game;
 import games.platform.models.Publisher;
 import games.platform.utils.DbGlobal;
 import games.platform.xml.gui.AddCashFromXMLForm;
+import games.platform.utils.LoggerGlobal;
 import games.platform.xml.gui.BuysToXMLForm;
 
 public class MainWindowForm extends javax.swing.JFrame {
 
     public MainWindowForm() {
         initComponents();
+        LoggerGlobal.generateLogger();
         DbGlobal.generateDb();
     }
 

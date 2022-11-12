@@ -2,9 +2,11 @@ package games.platform.actions;
 
 import games.platform.dbModels.Buys;
 import games.platform.dbModels.Clients;
+import games.platform.logger.AppLogger;
 import games.platform.models.Client;
 import games.platform.models.Deposit;
 import games.platform.models.Game;
+import games.platform.utils.LoggerGlobal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
@@ -30,8 +32,10 @@ public class ClientActions {
             balancePdStt.close();
             buyPdStt.close();
 
+            LoggerGlobal.getLogger().addLog(AppLogger.getInfoLevel(), "Compra Finalizada - Cliente:" + client.getName()+", Jogo: "+ game.getName());
             return ("Compra Finalizada");
         } catch (SQLException ex) {
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro em: " + ex.getMessage());
             return ("Erro em: " + ex.getMessage());
         }
     }

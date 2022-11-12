@@ -1,5 +1,7 @@
 package games.platform.xml;
 
+import games.platform.logger.AppLogger;
+import games.platform.utils.LoggerGlobal;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -37,7 +39,7 @@ public class ManipuladorXML {
             return dbF.newDocumentBuilder().newDocument();
 
         } catch (ParserConfigurationException ex) {
-            System.out.println(ex);
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro ao conectar o Banco de Dados. " + ex.getMessage());
             return null;
         }
     }
