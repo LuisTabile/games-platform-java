@@ -7,6 +7,7 @@ import games.platform.models.Client;
 import games.platform.models.Game;
 import games.platform.models.Publisher;
 import games.platform.utils.DbGlobal;
+import games.platform.xml.gui.AddCashFromXMLForm;
 import games.platform.xml.gui.BuysToXMLForm;
 
 public class MainWindowForm extends javax.swing.JFrame {
@@ -24,8 +25,8 @@ public class MainWindowForm extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         gamesMenu = new javax.swing.JMenu();
         gamesMenuItem = new javax.swing.JMenuItem();
-        storeMenuItem = new javax.swing.JMenuItem();
         gameCreateMenuItem = new javax.swing.JMenuItem();
+        storeMenuItem = new javax.swing.JMenuItem();
         publishersMenu = new javax.swing.JMenu();
         publishersListMenuItem = new javax.swing.JMenuItem();
         createPublisherMenuItem = new javax.swing.JMenuItem();
@@ -33,8 +34,9 @@ public class MainWindowForm extends javax.swing.JFrame {
         clientsMenuItem = new javax.swing.JMenuItem();
         clientsWithGamesMenuItem = new javax.swing.JMenuItem();
         createClientMenuItem = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        buysToXMLMenu = new javax.swing.JMenu();
         buysToXMLMenuItem = new javax.swing.JMenuItem();
+        addCashFromFileMenu = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Plataforma de jogos");
@@ -62,14 +64,6 @@ public class MainWindowForm extends javax.swing.JFrame {
         });
         gamesMenu.add(gamesMenuItem);
 
-        storeMenuItem.setText("Store");
-        storeMenuItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                storeMenuItemActionPerformed(evt);
-            }
-        });
-        gamesMenu.add(storeMenuItem);
-
         gameCreateMenuItem.setText("Create");
         gameCreateMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -77,6 +71,14 @@ public class MainWindowForm extends javax.swing.JFrame {
             }
         });
         gamesMenu.add(gameCreateMenuItem);
+
+        storeMenuItem.setText("Store");
+        storeMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                storeMenuItemActionPerformed(evt);
+            }
+        });
+        gamesMenu.add(storeMenuItem);
 
         menuBar.add(gamesMenu);
 
@@ -130,7 +132,7 @@ public class MainWindowForm extends javax.swing.JFrame {
 
         menuBar.add(userMenu);
 
-        jMenu1.setText("XML");
+        buysToXMLMenu.setText("XML");
 
         buysToXMLMenuItem.setText("Buys to XML");
         buysToXMLMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -138,9 +140,17 @@ public class MainWindowForm extends javax.swing.JFrame {
                 buysToXMLMenuItemActionPerformed(evt);
             }
         });
-        jMenu1.add(buysToXMLMenuItem);
+        buysToXMLMenu.add(buysToXMLMenuItem);
 
-        menuBar.add(jMenu1);
+        addCashFromFileMenu.setText("Add cash from File");
+        addCashFromFileMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addCashFromFileMenuActionPerformed(evt);
+            }
+        });
+        buysToXMLMenu.add(addCashFromFileMenu);
+
+        menuBar.add(buysToXMLMenu);
 
         setJMenuBar(menuBar);
 
@@ -221,7 +231,16 @@ public class MainWindowForm extends javax.swing.JFrame {
         buysToXMLForm.setVisible(true);
     }//GEN-LAST:event_buysToXMLMenuItemActionPerformed
 
+    private void addCashFromFileMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCashFromFileMenuActionPerformed
+        AddCashFromXMLForm addCashFromXMLForm = new AddCashFromXMLForm();
+        mainPanel.add(addCashFromXMLForm);
+        mainPanel.setVisible(true);
+        addCashFromXMLForm.setVisible(true);
+    }//GEN-LAST:event_addCashFromFileMenuActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem addCashFromFileMenu;
+    private javax.swing.JMenu buysToXMLMenu;
     private javax.swing.JMenuItem buysToXMLMenuItem;
     private javax.swing.JMenuItem clientsMenuItem;
     private javax.swing.JMenuItem clientsWithGamesMenuItem;
@@ -230,7 +249,6 @@ public class MainWindowForm extends javax.swing.JFrame {
     private javax.swing.JMenuItem gameCreateMenuItem;
     private javax.swing.JMenu gamesMenu;
     private javax.swing.JMenuItem gamesMenuItem;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JDesktopPane mainPanel;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem publishersListMenuItem;
