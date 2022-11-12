@@ -30,7 +30,7 @@ public class BuyToXML {
             ManipuladorXML.writeXmlFile(doc, "./compras.xml");
             
         } catch (Exception e) {
-            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro ao conectar o Banco de Dados. " + e.getMessage());
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro em: " + e.getMessage());
         }
 
     }

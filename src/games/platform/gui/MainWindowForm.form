@@ -18,20 +18,20 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gamesMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="storeMenuItem">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Store"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="storeMenuItemActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="gameCreateMenuItem">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Create"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="gameCreateMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="storeMenuItem">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Store"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="storeMenuItemActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>
@@ -92,7 +92,7 @@
             </MenuItem>
           </SubComponents>
         </Menu>
-        <Menu class="javax.swing.JMenu" name="jMenu1">
+        <Menu class="javax.swing.JMenu" name="buysToXMLMenu">
           <Properties>
             <Property name="text" type="java.lang.String" value="XML"/>
           </Properties>
@@ -103,6 +103,14 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buysToXMLMenuItemActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="addCashFromFileMenu">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Add cash from File"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addCashFromFileMenuActionPerformed"/>
               </Events>
             </MenuItem>
           </SubComponents>

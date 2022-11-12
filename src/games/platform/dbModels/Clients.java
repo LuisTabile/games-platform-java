@@ -51,4 +51,21 @@ public class Clients {
         return pstmt;
     }
     
+    /**
+     * Get the PreparedStatement to increase client balance
+     *
+     * @param clientId client id to increase balance
+     * @param value value to be increased
+     * @param dbConnection database Connection
+     * @return PreparedStatement to decrease client balance
+     */
+    public static PreparedStatement getClientBalanceIncreaseStatement(int clientId, float value, Connection dbConnection) throws SQLException{
+        PreparedStatement pstmt = dbConnection.prepareStatement("UPDATE client SET balance = balance + ? WHERE id = ?");
+
+        pstmt.setFloat(1, value);
+        pstmt.setInt(2, clientId);
+        
+        return pstmt;
+    }
+    
 }
