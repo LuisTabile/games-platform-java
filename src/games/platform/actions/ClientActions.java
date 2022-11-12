@@ -53,8 +53,10 @@ public class ClientActions {
 
             balancePdStt.close();
 
+            LoggerGlobal.getLogger().addLog(AppLogger.getInfoLevel(), "Crédito Adicionado - Cliente ID:" + deposit.getClientId() +", Valor: "+ deposit.getDepositValue());
             return ("Crédito adicionado");
         } catch (SQLException ex) {
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro em: " + ex.getMessage());
             return ("Erro em: " + ex.getMessage());
         }
     }

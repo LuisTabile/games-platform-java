@@ -25,6 +25,7 @@ public class Publisher {
             LoggerGlobal.getLogger().addLog(AppLogger.getInfoLevel(), "Editora Inserida: " + publisher.getName());
             return ("Editora Inserida");
         } catch (SQLException ex) {
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro em: " + ex.getMessage());
             return ("Erro em: " + ex.getMessage());
         }
     }

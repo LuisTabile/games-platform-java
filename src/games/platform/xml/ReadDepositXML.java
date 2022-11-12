@@ -1,8 +1,8 @@
 package games.platform.xml;
 
+import games.platform.logger.AppLogger;
 import games.platform.models.Deposit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import games.platform.utils.LoggerGlobal;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
@@ -14,6 +14,7 @@ public class ReadDepositXML {
         try {
             Document doc = ManipuladorXML.readXmlFile(filename);
             if (doc == null) {
+                LoggerGlobal.getLogger().addLog(AppLogger.getWarningLevel(), "Tentativa falha de encontrar o seguinte arquivo: " + filename);
                 throw new Error("Arquivo não encontrado");
             }
 
@@ -25,7 +26,7 @@ public class ReadDepositXML {
 
             return new Deposit(client_id, deposit_value);
         } catch (XPathExpressionException ex) {
-            Logger.getLogger(ReadDepositXML.class.getName()).log(Level.SEVERE, null, ex);
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro na leitura do seguinte arquivo: " + filename);
             throw new Error("Erro ao ler o arquivo");
         }
 

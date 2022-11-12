@@ -59,7 +59,7 @@ public class ResultSetTableModel extends AbstractTableModel {
             String className = metaData.getColumnClassName(column + 1);
             return Class.forName(className);
         } catch (Exception exception) {
-            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro em: " + exception);
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro em: " + exception.getMessage());
             exception.printStackTrace();
         }
 
@@ -75,7 +75,7 @@ public class ResultSetTableModel extends AbstractTableModel {
         try {
             return metaData.getColumnCount();
         } catch (SQLException sqlException) {            
-            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro em: " + sqlException);
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro em: " + sqlException.getMessage());
             sqlException.printStackTrace();
         }
 
@@ -92,7 +92,7 @@ public class ResultSetTableModel extends AbstractTableModel {
         try {
             return metaData.getColumnLabel(column + 1);
         } catch (SQLException sqlException) {
-            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro em: " + sqlException);
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro em: " + sqlException.getMessage());
             sqlException.printStackTrace();
         }
 
@@ -122,7 +122,7 @@ public class ResultSetTableModel extends AbstractTableModel {
             //obtém o objeto de uma coluna específica na linha posicionada
             return resultSet.getObject(column + 1);
         } catch (SQLException sqlException) {
-            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro em: " + sqlException);
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro em: " + sqlException.getMessage());
             sqlException.printStackTrace();
         }
 
@@ -159,7 +159,7 @@ public class ResultSetTableModel extends AbstractTableModel {
             statement.close();
             connection.close();
         } catch (SQLException sqlException) {
-            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro em: " + sqlException);
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro em: " + sqlException.getMessage());
             sqlException.printStackTrace();
         } finally {
             connectedToDatabase = false;
