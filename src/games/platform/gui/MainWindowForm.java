@@ -39,6 +39,8 @@ public class MainWindowForm extends javax.swing.JFrame {
         buysToXMLMenu = new javax.swing.JMenu();
         buysToXMLMenuItem = new javax.swing.JMenuItem();
         addCashFromFileMenu = new javax.swing.JMenuItem();
+        gamesHistory = new javax.swing.JMenu();
+        buysToXMLMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Plataforma de jogos");
@@ -154,6 +156,18 @@ public class MainWindowForm extends javax.swing.JFrame {
 
         menuBar.add(buysToXMLMenu);
 
+        gamesHistory.setText("Games History");
+
+        buysToXMLMenuItem1.setText("Removed Games");
+        buysToXMLMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gamesHistoryActionPerformed(evt);
+            }
+        });
+        gamesHistory.add(buysToXMLMenuItem1);
+
+        menuBar.add(gamesHistory);
+
         setJMenuBar(menuBar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -240,15 +254,24 @@ public class MainWindowForm extends javax.swing.JFrame {
         addCashFromXMLForm.setVisible(true);
     }//GEN-LAST:event_addCashFromFileMenuActionPerformed
 
+    private void gamesHistoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gamesHistoryActionPerformed
+        GamesOutdatedList gamesOutdatedList = new GamesOutdatedList(mainPanel);
+        mainPanel.add(gamesOutdatedList);
+        mainPanel.setVisible(true);
+        gamesOutdatedList.setVisible(true);
+    }//GEN-LAST:event_gamesHistoryActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem addCashFromFileMenu;
     private javax.swing.JMenu buysToXMLMenu;
     private javax.swing.JMenuItem buysToXMLMenuItem;
+    private javax.swing.JMenuItem buysToXMLMenuItem1;
     private javax.swing.JMenuItem clientsMenuItem;
     private javax.swing.JMenuItem clientsWithGamesMenuItem;
     private javax.swing.JMenuItem createClientMenuItem;
     private javax.swing.JMenuItem createPublisherMenuItem;
     private javax.swing.JMenuItem gameCreateMenuItem;
+    private javax.swing.JMenu gamesHistory;
     private javax.swing.JMenu gamesMenu;
     private javax.swing.JMenuItem gamesMenuItem;
     private javax.swing.JDesktopPane mainPanel;

@@ -33,7 +33,7 @@ public class Game {
             return ("Erro em: " + ex.getMessage());
         }
     }
-    
+
     /**
      * Get the query string to get all clients
      *
@@ -58,7 +58,7 @@ public class Game {
             return ("Erro em: " + ex.getMessage());
         }
     }
-    
+
     /**
      * Remove game from the database
      *
@@ -75,6 +75,17 @@ public class Game {
 
             LoggerGlobal.getLogger().addLog(AppLogger.getInfoLevel(), "Jogo Removido: " + game.getName());
             return ("Jogo Removido");
+        } catch (SQLException ex) {
+            LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro em: " + ex.getMessage());
+            return ("Erro em: " + ex.getMessage());
+        }
+    }
+
+    public static String removedGames(games.platform.models.Game game, Connection dbConnection) throws SQLException {
+        try ( PreparedStatement pstmt = dbConnection.prepareStatement("INSERT INTO removedGames VALUES (null, ?)")) {
+            pstmt.setString(1, game.getName());
+            pstmt.setInt(2, game.getId());
+            return ("Jogo removido da lista");
         } catch (SQLException ex) {
             LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro em: " + ex.getMessage());
             return ("Erro em: " + ex.getMessage());
