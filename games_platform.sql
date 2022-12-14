@@ -36,6 +36,14 @@ create table buy (
     CONSTRAINT FK_game FOREIGN KEY (game_id) REFERENCES game (id)
 );
 
+create table removedGames (
+id INT NOT NULL auto_increment,
+name VARCHAR(50),
+id_game int,
+PRIMARY KEY (id),
+CONSTRAINT fk FOREIGN KEY (id_game) REFERENCES game (id)
+);
+
 INSERT INTO client (id, name, balance)
 VALUES
   (1,"Meghan Howell",1476),
@@ -94,3 +102,10 @@ VALUES
   (23,"Hendrerit Industries","feugiat. Sed nec metus facilisis lorem tristique aliquet. Phasellus","2018-03-09",267,3),
   (24,"Iaculis Quis LLP","orci lacus vestibulum lorem, sit amet","2018-03-20",115,3),
   (25,"Interdum Enim Non Corp.","Integer aliquam adipiscing lacus. Ut nec urna et","2022-01-09",44,4);
+INSERT INTO removedGames (id,name, id_game)
+VALUES
+  (1,"Et Lacinia Foundation", 1),
+  (2,"Urna Nullam Foundation", 2),
+  (3,"Imperdiet Ullamcorper Duis PC", 3),
+  (4,"Commodo Hendrerit Industries", 4),
+  (5,"Augue Eu Tellus Associates", 5);
