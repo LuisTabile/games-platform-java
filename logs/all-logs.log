@@ -1,0 +1,10 @@
+dez. 14, 2022 7:10:58 PM games.platform.logger.AppLogger addLog
+SEVERE: Erro ao conectar o Banco de Dados. Access denied for user 'root'@'localhost' (using password: NO)
+dez. 14, 2022 7:11:30 PM games.platform.logger.AppLogger addLog
+SEVERE: Erro ao conectar o Banco de Dados. Unknown database 'games_platform'
+dez. 14, 2022 7:12:45 PM games.platform.logger.AppLogger addLog
+INFO: Jogo Removido: Mauris Nulla Integer LLC
+dez. 14, 2022 7:13:54 PM games.platform.logger.AppLogger addLog
+INFO: Compra Finalizada - Cliente:Meghan Howell, Jogo: Natoque Penatibus LLC
+dez. 14, 2022 7:13:58 PM games.platform.logger.AppLogger addLog
+INFO: Compra Finalizada - Cliente:Uriel Guthrie, Jogo: Natoque Penatibus LLC
