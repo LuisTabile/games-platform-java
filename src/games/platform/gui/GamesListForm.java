@@ -120,6 +120,7 @@ public class GamesListForm extends javax.swing.JInternalFrame {
         int selectedRow = table.getSelectedRow();
         if (selectedRow >= 0) {
             Game gameToRemove = getGameBySelectedRow(selectedRow);
+            games.platform.dbModels.Games.updateRemovedGames(gameToRemove, DbGlobal.getDb().getConnection());
             games.platform.crud.models.Game.removeGame(gameToRemove, DbGlobal.getDb().getConnection());
             try {
                 tableModel.setQuery(Games.getGames());

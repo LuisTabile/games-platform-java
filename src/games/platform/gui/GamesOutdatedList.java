@@ -24,7 +24,7 @@ public class GamesOutdatedList extends javax.swing.JInternalFrame {
             DataBase db = DbGlobal.getDb();
             tableModel = new ResultSetTableModel(db.getConnection());
             initComponents();
-            tableModel.setQuery(Games.getGames());
+            tableModel.setQuery(Games.getRemovedGames());
             table.createDefaultColumnsFromModel();
         } catch (IllegalStateException | SQLException | ClassNotFoundException e) {
             LoggerGlobal.getLogger().addLog(AppLogger.getSevereLevel(), "Erro ao conectar o Banco de Dados. " + e.getMessage());
@@ -77,16 +77,6 @@ public class GamesOutdatedList extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private Game getGameBySelectedRow(int row) {
-        int gameSelectedId = (int) table.getValueAt(row, 0);
-        String gameSelectedName = (String) table.getValueAt(row, 1);
-        String gameSelectedDescription = (String) table.getValueAt(row, 2);
-        Date gameSelectedReleaseDate = (Date) table.getValueAt(row, 3);
-        float gameSelectedPrice = (float) table.getValueAt(row, 4);
-        int gameSelectedPublisherId = (int) table.getValueAt(row, 5);
-        String gameSelectedPublisherName = (String) table.getValueAt(row, 6);
-        return new Game(gameSelectedId, gameSelectedName, gameSelectedDescription, gameSelectedReleaseDate, gameSelectedPrice, gameSelectedPublisherId, gameSelectedPublisherName);
-    }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
